@@ -1,9 +1,11 @@
 package com.example.fretsync
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.fretsync.R
+import androidx.fragment.app.Fragment
+import com.example.fretsync.fragments.HomeFragment
+import com.example.fretsync.fragments.ProfileFragment
+import com.example.fretsync.fragments.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainScreenActivity : AppCompatActivity() {
@@ -14,24 +16,26 @@ class MainScreenActivity : AppCompatActivity() {
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
+        // Load HomeFragment by default
+        if (savedInstanceState == null) {
+            loadFragment(HomeFragment())
+        }
+
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> {
-                    // Handle Home navigation (if needed)
-                    true
-                }
-                R.id.nav_profile -> {
-                    // Handle Profile navigation (if needed)
-                    true
-                }
-                R.id.nav_settings -> {
-                    // Open SettingsActivity
-                    val intent = Intent(this, SettingsActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                else -> false
+                R.id.nav_home -> loadFragment(HomeFragment())
+                R.id.nav_profile -> loadFragment(ProfileFragment())
+                R.id.nav_settings -> loadFragment(SettingsFragment())
             }
+            true
         }
     }
+
+    private fun loadFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null) // Allows back navigation
+        transaction.commit()
+    }
+
 }
