@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.FretSync" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.FretSync" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryRed</item>
+        <item name="colorPrimaryVariant">@color/darkPink</item>
+        <item name="colorSecondary">@color/deepPurple</item>
+        <item name="android:statusBarColor">@color/darkPink</item>
+        <item name="android:windowBackground">@color/darkGray</item>
+        <item name="android:navigationBarColor">@color/deepPurple</item>
+        <item name="editTextBackground">@color/white</item>
+
+    </style>
+
+
+    <style name="Theme.FretSync.Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@color/darkGray</item>
+    </style>
+
 </resources>
